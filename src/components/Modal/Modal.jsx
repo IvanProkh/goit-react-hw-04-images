@@ -7,7 +7,19 @@ import { Overlay, OpenModal } from './Modal.styled';
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ onClose, data }) => {
-  // useEffect
+  const handleKeyDown = e => {
+    console.log(e.code);
+    if (e.code === 'Escape') {
+      console.log('Escape!!!!');
+      onClose();
+      window.removeEventListener('keydown', handleKeyDown);
+    }
+  };
+
+  useEffect(() => {
+    console.log('вызвался юзефект');
+    window.addEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   // componentDidMount() {
   //   window.addEventListener('keydown', handleKeyDown);
@@ -17,14 +29,6 @@ export const Modal = ({ onClose, data }) => {
   //   window.addEventListener('keydown', handleKeyDown);
   //   window.removeEventListener('keydown', handleKeyDown);
   // }
-
-  // const handleKeyDown = e => {
-  //   console.log(e.code);
-  //   if (e.code === 'Escape') {
-  //     console.log('Escape!!!!');
-  //     onClose();
-  //   }
-  // };
 
   const handleBackdropClick = event => {
     console.log(event);
