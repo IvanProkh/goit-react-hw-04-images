@@ -24,15 +24,6 @@ export const Modal = ({ onClose, data }) => {
     window.addEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
-  // componentDidMount() {
-  //   window.addEventListener('keydown', handleKeyDown);
-  // }
-
-  // componentWillUnmount() {
-  //   window.addEventListener('keydown', handleKeyDown);
-  //   window.removeEventListener('keydown', handleKeyDown);
-  // }
-
   const handleBackdropClick = event => {
     console.log(event);
     if (event.currentTarget === event.target) {
