@@ -27,7 +27,6 @@ export function App() {
     }
 
     setLoading(true);
-    // console.log('start', loading);
     setShowButton(true);
 
     try {
@@ -51,8 +50,9 @@ export function App() {
     } catch (error) {
       setError(error);
     } finally {
-      setLoading(false);
-      // console.log('fin', loading);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
     }
   }, [currentPage, query]);
 
