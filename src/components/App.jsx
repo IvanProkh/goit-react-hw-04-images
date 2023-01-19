@@ -16,7 +16,7 @@ export function App() {
   const [loading, setLoading] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [query, setQuery] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
   const [largeImageData, setLargeImageData] = useState({});
   const [error, setError] = useState(null);
@@ -30,7 +30,7 @@ export function App() {
     setShowButton(true);
 
     try {
-      searchImage(query, currentPage).then(response => {
+      searchImage(query, page).then(response => {
         if (response.totalHits === 0) {
           toast.error(
             'Sorry, there are no images matching your search query. Please try again.'
@@ -54,7 +54,7 @@ export function App() {
         setLoading(false);
       }, 500);
     }
-  }, [currentPage, query]);
+  }, [page, query]);
 
   const handleFormSubmit = search => {
     if (query === search.trim()) {
@@ -65,7 +65,7 @@ export function App() {
 
     setImages([]);
     setQuery(search);
-    setCurrentPage(1);
+    setPage(1);
   };
 
   const toggleModal = (source, alt) => {
@@ -88,9 +88,7 @@ export function App() {
 
       {loading && <Loader />}
 
-      {showButton && (
-        <Button onClick={() => setCurrentPage(state => state + 1)} />
-      )}
+      {showButton && <Button onClick={() => setPage(state => state + 1)} />}
 
       <ToastContainer autoClose={3000} theme="colored" />
     </AppBox>
